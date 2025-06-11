@@ -8,6 +8,10 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="top-controls">
+    <button id="sidebar-toggle" class="icon-btn" aria-label="Afficher le menu"><i class="fa fa-bars"></i></button>
+    <button id="theme-toggle" class="icon-btn" aria-label="Changer de thème"><i class="fa fa-moon"></i></button>
+  </div>
   <div class="sidebar">
     <div class="profile">
       <img src="images/profile.png" alt="Photo de profil" />
@@ -169,6 +173,7 @@
 
   <section id="projets" class="projets-section animate-on-scroll">
   <h2 class="animate-on-scroll">Mes Projets</h2>
+  <input type="text" id="project-search" class="project-search" placeholder="Rechercher un projet..." />
   <div class="projects-scroll">
     <div class="project-card animate-on-scroll clickable"onclick="window.open('documents/Zabbix-1.pdf', '_blank')">
        <img src="images/zabbix.png" alt="Zabbix">
