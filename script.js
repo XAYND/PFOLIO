@@ -1,5 +1,13 @@
 let intervalId = null;
 
+window.addEventListener("load", () => {
+  const loader = document.getElementById("loader-wrapper");
+  if (loader) {
+    loader.classList.add("fade-out");
+    setTimeout(() => loader.remove(), 600);
+  }
+});
+
 // === Animation d'écriture (typewriter) ===
 function typeWriter(text, elementId, speed = 60) {
   const element = document.getElementById(elementId);
