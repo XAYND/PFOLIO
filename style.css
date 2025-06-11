@@ -1042,6 +1042,9 @@ section:not(.presentation-section):not(.contact-section):not(#parcours) {
   color: white;
   border-radius: 20px;
   margin-top: 40px;
+  overflow: visible; /* <-- permet aux stats de dépasser */
+  display: block !important;
+  opacity: 1 !important;
 }
 
 .alternance-content {
@@ -1819,9 +1822,6 @@ section:not(.presentation-section):not(.contact-section):not(#parcours) {
   }
 }
 
-#alternance {
-  overflow: visible; /* <-- permet aux stats de dépasser */
-}
 .animated-line {
   opacity: 0;
   transform: translateY(30px);
@@ -1903,10 +1903,6 @@ section:not(.presentation-section):not(.contact-section):not(#parcours) {
   margin: 60px 0;
 }
 
-#alternance {
-  display: block !important;
-  opacity: 1 !important;
-}
 .tableau-container {
   width: 100%;
   max-width: 1000px;
