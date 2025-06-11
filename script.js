@@ -18,17 +18,6 @@ function typeWriter(text, elementId, speed = 60) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  // === Préférence de thème ===
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme === 'light') {
-    document.body.classList.add('light-theme');
-  }
-
-  document.getElementById('theme-toggle').addEventListener('click', () => {
-    document.body.classList.toggle('light-theme');
-    const mode = document.body.classList.contains('light-theme') ? 'light' : 'dark';
-    localStorage.setItem('theme', mode);
-  });
 
   document.getElementById('sidebar-toggle').addEventListener('click', () => {
     document.body.classList.toggle('sidebar-hidden');
