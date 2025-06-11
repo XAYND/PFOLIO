@@ -3,8 +3,10 @@ let intervalId = null;
 window.addEventListener("load", () => {
   const loader = document.getElementById("loader-wrapper");
   if (loader) {
-    loader.classList.add("fade-out");
-    setTimeout(() => loader.remove(), 600);
+    setTimeout(() => {
+      loader.classList.add("fade-out");
+      setTimeout(() => loader.remove(), 600);
+    }, 2600);
   }
 });
 
