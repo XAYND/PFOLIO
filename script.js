@@ -18,6 +18,22 @@ function typeWriter(text, elementId, speed = 60) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  // === Préférence de thème ===
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'light') {
+    document.body.classList.add('light-theme');
+  }
+
+  document.getElementById('theme-toggle').addEventListener('click', () => {
+    document.body.classList.toggle('light-theme');
+    const mode = document.body.classList.contains('light-theme') ? 'light' : 'dark';
+    localStorage.setItem('theme', mode);
+  });
+
+  document.getElementById('sidebar-toggle').addEventListener('click', () => {
+    document.body.classList.toggle('sidebar-hidden');
+  });
+
   // === Message d’accueil
   typeWriter("Bienvenue sur mon portfolio", "landing-title", 70);
 
@@ -38,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const projectItems = document.querySelectorAll('.project-item');
   const activityCards = document.querySelectorAll('.activity-card');
   const textElements = document.querySelectorAll('.animate-on-scroll');
+  const searchInput = document.getElementById('project-search');
 
   const visibilityObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -63,6 +80,16 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { threshold: 0.5 });
 
   [...skillBars, ...skillImages, ...projectItems, ...activityCards, ...textElements].forEach(el => visibilityObserver.observe(el));
+
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.toLowerCase();
+      document.querySelectorAll('.project-card').forEach(card => {
+        const text = card.textContent.toLowerCase();
+        card.style.display = text.includes(query) ? 'block' : 'none';
+      });
+    });
+  }
 
   // === Affichage conditionnel des sections Épreuves
   document.querySelectorAll('.epreuve-card, .sub-link').forEach(btn => {
@@ -140,6 +167,25 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }, { threshold: 0.3 });
   animatedLines.forEach(el => lineObserver.observe(el));
+
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.sidebar nav a[href^="#"]');
+  function highlightNav() {
+    const scrollPos = window.scrollY || document.documentElement.scrollTop;
+    sections.forEach(section => {
+      const id = section.getAttribute('id');
+      const link = document.querySelector(`.sidebar nav a[href="#${id}"]`);
+      if (!link) return;
+      const offset = section.offsetTop - 100;
+      const height = section.offsetHeight;
+      if (scrollPos >= offset && scrollPos < offset + height) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      }
+    });
+  }
+  window.addEventListener('scroll', highlightNav);
+  highlightNav();
 });
 // Si besoin : activer animation au scroll
 document.addEventListener("DOMContentLoaded", () => {
